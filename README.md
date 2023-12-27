@@ -1,3 +1,3 @@
-# template1
+# Weather app
 
-My First JS template
+Weather app first try
