@@ -1,4 +1,6 @@
 
+import changeDaysBgOnCLick from "./style.js"
+
 async function getWeather(city) {
     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=b9d5054bdd6e474c906163150232512&q=${city}&aqi=no`)
     const data = await response.json()
@@ -14,9 +16,8 @@ async function getWeather(city) {
     return { isDay,icon,countryName, cityName, localTime, description, humidity, temperature, feelsLike }
 }
 
-async function addToDom() {
-    const input = document.getElementById('region-input')
-    const weatherObj = await getWeather(input.value)
+async function addToDom(input) {
+    const weatherObj = await getWeather(input)
     const country = document.getElementById('country')
     const city = document.getElementById('city')
     const description = document.getElementById('description')
@@ -32,23 +33,65 @@ async function addToDom() {
     mainIcon.src = weatherObj.icon
 }
 
-const button = document.getElementById('validate-region')
-button.addEventListener('click', addToDom)
-
-async function getFutureForecast(){
-    const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=b9d5054bdd6e474c906163150232512&q=London&days=7&aqi=no&alerts=no`)
+async function getFutureForecast(city){
+    const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=b9d5054bdd6e474c906163150232512&q=${city}&days=7&aqi=no&alerts=no`)
     const data = await response.json()
-    console.log(data.forecast.forecastday)
     let forecastArray = data.forecast.forecastday
-
     for (let i = 1; i <= forecastArray.length; i++){
-        const day = document.getElementById(`day${i}`)
-        day
+        const day = document.getElementById(`dayName${i}`)
+        const weatherIcon = document.getElementById(`icon${i}`)
+        const celsiusTemp = document.querySelector(`.mini-celsius${i}`)
+        const ferTemp = document.querySelector(`.mini-fer${i}`)
+
+        let dateName = new Date(data.forecast.forecastday[i-1].date)
+        let today = dateName.getDay()
+        let dayInLetters = switchDayNumberToName(today)
+        day.innerText = dayInLetters
+        weatherIcon.src = data.forecast.forecastday[i-1].day.condition.icon
+        celsiusTemp.innerText = Math.round(data.forecast.forecastday[i-1].day.avgtemp_c)
+        ferTemp.innerText = Math.round(data.forecast.forecastday[i-1].day.avgtemp_f)
     }
-    console.log(data.forecast.forecastday[0].day.condition.icon)
-    console.log(data.forecast.forecastday[0].day.condition.text)
-
-
 }
 
-getFutureForecast()
+// getFutureForecast()
+
+function switchDayNumberToName(date){
+    switch (date){
+        case 0:
+            return 'Mon'
+        break;
+        case 1:
+            return 'Tue'
+        break;
+        case 2:
+            return 'Wed'
+        break;
+        case 3:
+            return 'Thur'
+        break;
+        case 4:
+            return 'Fri'
+        break;
+        case 5:
+            return 'Sat'
+        break;
+        case 6:
+            return 'Sun'
+        break;
+    }
+}
+
+const button = document.getElementById('validate-region')
+button.addEventListener('click', () => {
+    const input = document.getElementById('region-input')
+    addToDom(input)
+    getFutureForecast(input.value)
+}
+)
+
+window.addEventListener('load', () => {
+    addToDom('Rabat')
+    getFutureForecast('Rabat')
+})
+
+changeDaysBgOnCLick()
