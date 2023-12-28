@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script src="my.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <form action="/">
         <input type="text" id="region-input">
@@ -15,87 +17,91 @@
     <div id="container">
         <div id="header">
             <div id="left">
-                <div id="icon-temperature">
-                    <img src="#" alt="main-icon" id="mainIcon">
-                    <p id="temperature"></p>
+                <div id="icon-temp">
+                    <img src="img/cloudy.svg" alt="main-icon" id="mainIcon">
+                    <p id="temperature">60</p>
                 </div>
                 <div id="units">
-                    <span>°C</span>
-                    <span>°F</span>
+                    <span class="celsius">°C</span>
+                    <span class="fer">°F</span>
                 </div>
                 <div id="mainDetails">
-                    <p>Precipitation<span id="precipitation"></span></p>
-                    <p>Humidity<span id="humidity"></span></p>
-                    <p>Vent<span id="vent"></span></p>
+                    <p>Precipitation:<span id="precipitation"></span></p>
+                    <p>Humidity:<span id="humidity"></span></p>
+                    <p>Vent:<span id="vent"></span></p>
                 </div>
             </div>
             <div id="right">
-                <p>Weather Report</p>
-                <p id="country"></p>
-                <p id="city"></p>
-                <p id="time"></p>
-                <p id="description"></p>
+                <h2>Weather Report</h2>
+                <p id="time">time</p>
+                <p id="country">country</p>
+                <p id="city">city</p>
+                <p id="description">description</p>
             </div>
         </div>
 
         <div id="daysForecast">
             <div id="day1" class="day">
-                <p class="dayName"></p>
-                <img src="#" alt="" class="weatherIcon">
+                <p id="dayName1">Monday</p>
+                <img src="#" alt="" class="weatherIcon" id="icon1">
                 <p class="miniTemp">
-                    <span class="celcius"></span>
-                    <span class="fer"></span>
+                    <span class="temp-celsius">23</span>
+                    <span class="temp-fer">45</span>
                 </p>
             </div>
             <div id="day2" class="day">
-                <p class="dayName"></p>
-                <img src="#" alt="" class="weatherIcon">
+                <p id="dayName2"></p>
+                <img src="#" alt="" class="weatherIcon" id="icon2">
                 <p class="miniTemp">
-                    <span class="celcius"></span>
-                    <span class="fer"></span>
+                    <span class="mini-celcius"></span>
+                    <span class="mini-fer"></span>
                 </p>
             </div>
             <div id="day3" class="day">
-                <p class="dayName"></p>
-                <img src="#" alt="" class="weatherIcon">
+                <p id="dayName3"></p>
+                <img src="#" alt="" class="weatherIcon" id="icon3">
                 <p class="miniTemp">
-                    <span class="celcius"></span>
-                    <span class="fer"></span>
+                    <span class="mini-celcius"></span>
+                    <span class="mini-fer"></span>
                 </p>
             </div>
             <div id="day4" class="day">
-                <p class="dayName"></p>
-                <img src="#" alt="" class="weatherIcon">
+                <p id="dayName4"></p>
+                <img src="#" alt="" class="weatherIcon" id="icon4">
                 <p class="miniTemp">
-                    <span class="celcius"></span>
-                    <span class="fer"></span>
+                    <span class="mini-celcius"></span>
+                    <span class="mini-fer"></span>
                 </p>
             </div>
             <div id="day5" class="day">
-                <p class="dayName"></p>
-                <img src="#" alt="" class="weatherIcon">
+                <p id="dayName5"></p>
+                <img src="#" alt="" class="weatherIcon" id="icon5">
                 <p class="miniTemp">
-                    <span class="celcius"></span>
-                    <span class="fer"></span>
+                    <span class="mini-celcius"></span>
+                    <span class="mini-fer"></span>
                 </p>
             </div>
             <div id="day6" class="day">
-                <p class="dayName"></p>
-                <img src="#" alt="" class="weatherIcon">
+                <p id="dayName6"></p>
+                <img src="#" alt="" class="weatherIcon" id="icon6">
                 <p class="miniTemp">
-                    <span class="celcius"></span>
-                    <span class="fer"></span>
+                    <span class="mini-celcius"></span>
+                    <span class="mini-fer"></span>
                 </p>
             </div>
             <div id="day7" class="day">
-                <p class="dayName"></p>
-                <img src="#" alt="" class="weatherIcon">
+                <p id="dayName7"></p>
+                <img src="#" alt="" class="weatherIcon" id="icon7">
                 <p class="miniTemp">
-                    <span class="celcius"></span>
-                    <span class="fer"></span>
+                    <span class="mini-celcius"></span>
+                    <span class="mini-fer"></span>
                 </p>
             </div>
         </div>
+        <div id="hourlyGraph">
+            hourlyGraph
+        </div>
     </div>
 </body>
+
 </html>
