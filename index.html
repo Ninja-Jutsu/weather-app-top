@@ -8,14 +8,94 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="time"></div>
-    <input type="text" id="region-input">
-    <button id="validate-region">Search</button>
+    <form action="/">
+        <input type="text" id="region-input">
+        <button id="validate-region" type="button">Search</button>
+    </form>
     <div id="container">
-        <div id="country"></div>
-        <div id="city"></div>
-        <div id="description"></div>
-        <div id="temperature"></div>
+        <div id="header">
+            <div id="left">
+                <div id="icon-temperature">
+                    <img src="#" alt="main-icon" id="mainIcon">
+                    <p id="temperature"></p>
+                </div>
+                <div id="units">
+                    <span>°C</span>
+                    <span>°F</span>
+                </div>
+                <div id="mainDetails">
+                    <p>Precipitation<span id="precipitation"></span></p>
+                    <p>Humidity<span id="humidity"></span></p>
+                    <p>Vent<span id="vent"></span></p>
+                </div>
+            </div>
+            <div id="right">
+                <p>Weather Report</p>
+                <p id="country"></p>
+                <p id="city"></p>
+                <p id="time"></p>
+                <p id="description"></p>
+            </div>
+        </div>
+
+        <div id="daysForecast">
+            <div id="day1" class="day">
+                <p class="dayName"></p>
+                <img src="#" alt="" class="weatherIcon">
+                <p class="miniTemp">
+                    <span class="celcius"></span>
+                    <span class="fer"></span>
+                </p>
+            </div>
+            <div id="day2" class="day">
+                <p class="dayName"></p>
+                <img src="#" alt="" class="weatherIcon">
+                <p class="miniTemp">
+                    <span class="celcius"></span>
+                    <span class="fer"></span>
+                </p>
+            </div>
+            <div id="day3" class="day">
+                <p class="dayName"></p>
+                <img src="#" alt="" class="weatherIcon">
+                <p class="miniTemp">
+                    <span class="celcius"></span>
+                    <span class="fer"></span>
+                </p>
+            </div>
+            <div id="day4" class="day">
+                <p class="dayName"></p>
+                <img src="#" alt="" class="weatherIcon">
+                <p class="miniTemp">
+                    <span class="celcius"></span>
+                    <span class="fer"></span>
+                </p>
+            </div>
+            <div id="day5" class="day">
+                <p class="dayName"></p>
+                <img src="#" alt="" class="weatherIcon">
+                <p class="miniTemp">
+                    <span class="celcius"></span>
+                    <span class="fer"></span>
+                </p>
+            </div>
+            <div id="day6" class="day">
+                <p class="dayName"></p>
+                <img src="#" alt="" class="weatherIcon">
+                <p class="miniTemp">
+                    <span class="celcius"></span>
+                    <span class="fer"></span>
+                </p>
+            </div>
+            <div id="day7" class="day">
+                <p class="dayName"></p>
+                <img src="#" alt="" class="weatherIcon">
+                <p class="miniTemp">
+                    <span class="celcius"></span>
+                    <span class="fer"></span>
+                </p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
