@@ -1,7 +1,7 @@
 
-import changeDaysBgOnCLick from "./style.js"
+import changeDaysStyleOnCLick from "./style.js"
 
-async function getWeather(city) {
+async function getWeatherForHeader(city) {
     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=b9d5054bdd6e474c906163150232512&q=${city}&aqi=no`)
     const data = await response.json()
     const countryName = data.location.country
@@ -20,8 +20,9 @@ async function getWeather(city) {
     return { isDay,icon,countryName, regionName,cityName, localTime, description, humidity, rain, wind, temperature, feelsLike }
 }
 
-async function addToDom(input) {
-    const weatherObj = await getWeather(input)
+async function addToHeaderDomOnSearch(input) {
+    console.log(input)
+    const weatherObj = await getWeatherForHeader(input)
     const country = document.getElementById('country')
     const city = document.getElementById('city')
     const description = document.getElementById('description')
@@ -31,7 +32,6 @@ async function addToDom(input) {
     const precipitation = document.getElementById('precipitation')
     const humidity = document.getElementById('humidity')
     const wind = document.getElementById('wind')
-
 
     country.innerText = weatherObj.countryName
     city.innerText = weatherObj.regionName || weatherObj.cityName
@@ -47,55 +47,64 @@ async function addToDom(input) {
 async function getFutureForecast(city){
     const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=b9d5054bdd6e474c906163150232512&q=${city}&days=7&aqi=no&alerts=no`)
     const data = await response.json()
-    let forecastArray = data.forecast.forecastday
+    const forecastArray = data.forecast.forecastday
+    return forecastArray
+}
+
+async function addFutureForecastToDom(city){
+    const forecastArray = await getFutureForecast(city)
+    console.log(forecastArray)
     for (let i = 1; i <= forecastArray.length; i++){
         const day = document.getElementById(`dayName${i}`)
         const weatherIcon = document.getElementById(`icon${i}`)
         const celsiusTemp = document.querySelector(`.mini-celsius${i}`)
         const ferTemp = document.querySelector(`.mini-fer${i}`)
         const date = document.getElementById(`date${i}`)
-
-        let dateName = new Date(data.forecast.forecastday[i-1].date)
+        const miniPrep = document.getElementsByClassName('mini-prep')
+        const miniHumid = document.getElementsByClassName(`mini-humid`)
+        const miniWind = document.getElementsByClassName(`mini-wind`)
+        const miniDescription = document.getElementsByClassName(`mini-description`)
+        let dateName = new Date(forecastArray[i-1].date)
         let today = dateName.getDay()
-        
         let dayInLetters = switchDayNumberToName(today)
+
+        miniPrep[i-1].innerText = forecastArray[i-1].day.totalprecip_mm
+        miniHumid[i-1].innerText = forecastArray[i-1].day.avghumidity
+        miniWind[i-1].innerText = forecastArray[i-1].day.avgvis_km
+        miniDescription[i-1].innerText = forecastArray[i-1].day.condition.text
         day.innerText = dayInLetters
-        date.innerText = data.forecast.forecastday[i-1].date
-        weatherIcon.src = data.forecast.forecastday[i-1].day.condition.icon
-        celsiusTemp.innerText = Math.round(data.forecast.forecastday[i-1].day.avgtemp_c)
-        ferTemp.innerText = Math.round(data.forecast.forecastday[i-1].day.avgtemp_f)
+        date.innerText = forecastArray[i-1].date
+        weatherIcon.src = forecastArray[i-1].day.condition.icon
+        celsiusTemp.innerText = Math.round(forecastArray[i-1].day.avgtemp_c)
+        ferTemp.innerText = Math.round(forecastArray[i-1].day.avgtemp_f)
     }
-    clickSpecificDay()
 }
 
-async function updateHeaderWhenDayIsClicked(city, date){
-    const response = await fetch(`http://api.weatherapi.com/v1/future.json?key=b9d5054bdd6e474c906163150232512&q=${city}&dt=${date}`)
-    const result = await response.json()
-
+async function updateHeaderWhenDayIsClicked(day){
+    //Targeted elements
     const localTime = document.getElementById('time')
     const precipitation = document.getElementById('precipitation')
     const humidity = document.getElementById('humidity')
     const wind = document.getElementById('wind')
     const description = document.getElementById('description')
     const temperature = document.getElementById('temperature')
-    
-    localTime.innerText = date
-    precipitation.innerText = result.forecast.forecastday[0].totalprecip_mm
-    humidity.innerText = result.forecast.forecastday[0].day.avghumidity
-    wind.innerText = result.forecast.forecastday[0].day.avgvis_km
-    description.innerText = result.forecast.forecastday[0].day.condition.text
-    temperature.innerText = result.forecast.forecastday[0].day.avgtemp_c
+    const icon = document.getElementById('mainIcon')
 
-
+    const allMiniDescriptions = document.getElementsByClassName('mini-description')
+    icon.src = document.getElementById(`icon${day}`).src
+    precipitation.innerText = document.getElementById(`mini-prep${day}`).innerText
+    humidity.innerText = document.getElementById(`mini-humid${day}`).innerText
+    wind.innerText = document.getElementById(`mini-wind${day}`).innerText
+    description.innerText = allMiniDescriptions[day-1].innerText
+    temperature.innerText = document.querySelector(`.mini-celsius${day}`).innerText
+    localTime.innerText = document.getElementById(`date${day}`).innerText
 }
 
 function clickSpecificDay(){
     const allDays = document.getElementsByClassName('day')
     for (let i = 0; i < allDays.length ; i++){
-        const city = document.getElementById('city').innerText
-        const date = document.getElementById(`date${i+1}`).innerHTML
         allDays[i].addEventListener('click', () => {
-            updateHeaderWhenDayIsClicked(city, date)
+            updateHeaderWhenDayIsClicked(i+1)
         })
     }
 }
@@ -126,18 +135,22 @@ function switchDayNumberToName(date){
     }
 }
 
+// Load Rabat forecast onload:
+window.addEventListener('load', () => {
+    addToHeaderDomOnSearch('Kenitra')
+    addFutureForecastToDom('Kenitra')
+    clickSpecificDay()
+})
+
+//Load searched city forecast
 const button = document.getElementById('validate-region')
 button.addEventListener('click', () => {
     const input = document.getElementById('region-input')
-    addToDom(input.value)
-    getFutureForecast(input.value)
-}
+    addToHeaderDomOnSearch(input.value)
+    addFutureForecastToDom(input.value)
+    }
 )
 
-window.addEventListener('load', () => {
-    addToDom('Kenitra')
-    getFutureForecast('Kenitra')
-})
 
-changeDaysBgOnCLick()
-updateHeaderWhenDayIsClicked('kenitra', '2024-01-01')
+
+changeDaysStyleOnCLick()
