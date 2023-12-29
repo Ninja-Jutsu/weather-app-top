@@ -127,3 +127,7 @@ form {
 .day:hover {
     opacity: 1;
 }
+
+.date {
+    display: none;
+}
