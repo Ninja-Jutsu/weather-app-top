@@ -1,5 +1,5 @@
 
-import changeDaysStyleOnCLick from "./style.js"
+import changeDaysStyleOnCLick , {changeOverlayIfDayOrNight} from "./style.js"
 
 async function getWeatherForHeader(city) {
     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=b9d5054bdd6e474c906163150232512&q=${city}&aqi=no`)
@@ -140,6 +140,7 @@ window.addEventListener('load', () => {
     addToHeaderDomOnSearch('Kenitra')
     addFutureForecastToDom('Kenitra')
     clickSpecificDay()
+    changeOverlayIfDayOrNight('Kenitra')
 })
 
 //Load searched city forecast
@@ -148,9 +149,8 @@ button.addEventListener('click', () => {
     const input = document.getElementById('region-input')
     addToHeaderDomOnSearch(input.value)
     addFutureForecastToDom(input.value)
+    changeOverlayIfDayOrNight(input.value)
     }
 )
-
-
 
 changeDaysStyleOnCLick()

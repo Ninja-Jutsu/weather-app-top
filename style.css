@@ -1,28 +1,30 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
-:root{
+:root {
     --mainTextDayColor: #030712;
     --secondTextDayColor: rgb(75, 85, 99);
     --mainTextNightColor: #f1f5f9;
     --secondTextNightColor: #a1a1aa;
-    --mainFont: ;
+    --dayBorderColor:
+        --mainFont:;
     --secondFont: ;
-    --bgDayColor: #fde68a;
-    --bgAfternoonColor: #fb923c;
-    --bgNightColor: #475569;
+    --overLayColor: linear-gradient(to bottom, #fde68a 0%, #f7a15b 100%);
+    --transformIcons: translateX(-110%) translateY(200%);
+    /* --bgNightColor: linear-gradient(to bottom, #94a3b8 0%, #475569 100%);  */
 }
 
 body {
+    position: relative;
     display: grid;
     height: 100vh;
     grid-template-rows: 5% 95%;
-    
+
 }
 
 form {
@@ -38,7 +40,7 @@ form {
 
 #header {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 70% 30%;
     grid-auto-rows: max-content;
     justify-content: space-between;
     align-content: center;
@@ -47,8 +49,7 @@ form {
 
 #left {
     display: grid;
-    grid-template-columns: 50% 20% 30%;
-    justify-items: center;
+    grid-template-columns: 40% 10% 50%;
 }
 
 #right {
@@ -58,40 +59,41 @@ form {
     padding-right: 10px;
 }
 
-#right h2{
+#right h2 {
     color: var(--mainTextDayColor);
+    font-size: 3vw;
 }
 
-#right p{
+#right p {
     color: var(--secondTextDayColor);
 }
 
 #icon-temp {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: 5px;
-    align-items: start;
 }
 
 #icon-temp img {
-    width: 4rem;
+    width: 12vw;
+
 }
 
-#icon-temp #temperature{
-    font-size: 4rem;
+#icon-temp #temperature {
+    font-size: 12vw;
 }
 
 #units {
     display: flex;
-    align-items: start;
-    font-size: 1.2rem;
+    align-self: start;
+    /* justify-self: center; */
+    font-size: 2vw;
 }
 
 #units span {
     padding: 5px;
 }
 
-#units .celsius{
+#units .celsius {
     border-right: 2px solid black;
 }
 
@@ -101,11 +103,13 @@ form {
 
 #mainDetails {
     display: flex;
+    font-size: 2vw;
     flex-direction: column;
     color: var(--secondTextDayColor);
+    padding-left: 10px;
 }
 
-#daysForecast{
+#daysForecast {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
 }
@@ -128,6 +132,31 @@ form {
     opacity: 1;
 }
 
-.date, .mini-prep, .mini-wind, .mini-humid, .mini-description{
+.date,
+.mini-prep,
+.mini-wind,
+.mini-humid,
+.mini-description {
     display: none;
+}
+
+#overlay1 {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: red;
+    z-index: -2;
+    transition: background 2s;
+}
+
+#morning,
+#night,
+#afternoon {
+    position: absolute;
+    width: 300px;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-110%) translateY(200%);
+    transition: transform 2s;
+    opacity: 0.5;
 }
