@@ -22,6 +22,7 @@
 html {
     height: 100vh;
 }
+
 body {
     position: relative;
     display: grid;
@@ -89,6 +90,7 @@ form {
     align-self: start;
     /* justify-self: center; */
     font-size: 2vw;
+    cursor: pointer;
 }
 
 #units span {
@@ -97,6 +99,13 @@ form {
 
 #units .celsius {
     border-right: 2px solid black;
+}
+
+#units .celsius:hover{
+    scale: 1.1;
+}
+#units .fer:hover{ 
+    scale: 1.1;
 }
 
 .miniTemp span::before {
@@ -111,7 +120,7 @@ form {
     padding-left: 10px;
 }
 
-#mainDetails p{
+#mainDetails p {
     display: flex;
     gap: 3px;
 }
@@ -156,14 +165,75 @@ form {
     transition: background 2s;
 }
 
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+input {
+    padding: 1vw;
+    width: 15vw;
+    transition: width 1s;
+}
+
+input:focus {
+    background-color: #a1a1aa;
+    width: 20vw;
+}
+
+button {
+    font-size: 12px;
+    border: none;
+    padding: 1vw;
+    background-color: lightgreen;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover{
+    scale: 0.9;
+}
+
 #morning,
 #night,
 #afternoon {
     position: absolute;
-    width: 300px;
-    bottom: 0;
+    width: 150px;
+    bottom: 30px;
     left: 0;
     transform: translateX(-110%) translateY(50%);
     transition: transform 2s ease-in-out;
     opacity: 0.5;
+}
+
+footer {
+    grid-row: 6/7;
+    text-align: center;
+    margin-top: auto;
+}
+
+@media screen and (max-width: 600px) {
+    #daysForecast {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    #mainDetails {
+        font-size: 3vw;
+        color: var(--secondTextDayColor);
+        padding-left: 10px;
+    }
+    #units {
+        font-size: 3vw;
+        padding-right: 10px;
+    }
+    #icon-temp {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #left {
+        display: grid;
+        grid-template-columns: 40% 20% 40%;
+    }
 }
