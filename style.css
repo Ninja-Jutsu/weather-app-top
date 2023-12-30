@@ -19,6 +19,9 @@
     /* --bgNightColor: linear-gradient(to bottom, #94a3b8 0%, #475569 100%);  */
 }
 
+html {
+    height: 100vh;
+}
 body {
     position: relative;
     display: grid;
@@ -144,7 +147,7 @@ form {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background: red;
+    background: var(--overLayColor);
     z-index: -2;
     transition: background 2s;
 }
@@ -156,7 +159,7 @@ form {
     width: 300px;
     bottom: 0;
     left: 0;
-    transform: translateX(-110%) translateY(200%);
-    transition: transform 2s;
+    transform: translateX(-110%) translateY(50%);
+    transition: transform 2s ease-in-out;
     opacity: 0.5;
 }
