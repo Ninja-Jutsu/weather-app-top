@@ -5,7 +5,8 @@ export default function changeDaysStyleOnCLick(){
             for( let y = 0; y < allDays.length; y++){
                 allDays[y].removeAttribute('style')
             }
-            allDays[i].style.opacity = 1
+            allDays[i].style.opacity = 1;
+            allDays[i].style.backgroundColor = 'var(--secondTextDayColor)'
         })
     }
 }

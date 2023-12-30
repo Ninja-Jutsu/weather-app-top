@@ -71,6 +71,16 @@ form {
     color: var(--secondTextDayColor);
 }
 
+#country,
+#time {
+    font-weight: bold;
+}
+
+#country {
+    font-size: larger;
+}
+
+
 #icon-temp {
     display: flex;
     gap: 5px;
@@ -101,15 +111,24 @@ form {
     border-right: 2px solid black;
 }
 
-#units .celsius:hover{
+#units .celsius:hover {
     scale: 1.1;
 }
-#units .fer:hover{ 
+
+#units .fer:hover {
     scale: 1.1;
 }
 
 .miniTemp span::before {
     content: '°'
+}
+
+.celsius:active {
+    color: gold;
+}
+
+.fer:active {
+    color: gold;
 }
 
 #mainDetails {
@@ -165,11 +184,12 @@ form {
     transition: background 2s;
 }
 
-form{
+form {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 input {
     padding: 1vw;
     width: 15vw;
@@ -190,7 +210,7 @@ button {
     cursor: pointer;
 }
 
-button:hover{
+button:hover {
     scale: 0.9;
 }
 
@@ -218,20 +238,24 @@ footer {
         justify-content: center;
         flex-wrap: wrap;
     }
+
     #mainDetails {
         font-size: 3vw;
         color: var(--secondTextDayColor);
         padding-left: 10px;
     }
+
     #units {
         font-size: 3vw;
         padding-right: 10px;
     }
+
     #icon-temp {
         display: flex;
         align-items: center;
         justify-content: center;
     }
+
     #left {
         display: grid;
         grid-template-columns: 40% 20% 40%;

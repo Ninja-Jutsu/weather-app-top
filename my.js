@@ -159,8 +159,6 @@ button.addEventListener('click', () => {
 }
 )
 
-changeDaysStyleOnCLick()
-
 async function changeBadIcons() {
     const description = document.getElementById('description').innerText
     console.log(description)
@@ -172,3 +170,30 @@ async function changeBadIcons() {
     }
     console.log('changeBadIcons')
 }
+
+// Switch unit:
+function switchUnit(){
+    const celsius = document.querySelector('.celsius')
+    const fer = document.querySelector('.fer')
+    const temperature = document.getElementById('temperature')
+    let counter = 1;
+
+    celsius.addEventListener('click', () => {
+        if(counter === 0){
+            temperature.innerText = Math.round((temperature.innerText - 32) * 5/9)
+            counter = 1
+        }
+    })
+
+    fer.addEventListener('click', () => {
+        if(counter === 1){
+        temperature.innerText = Math.round((temperature.innerText * 9/5) + 32)
+        counter = 0
+        }
+    })
+}
+
+
+changeDaysStyleOnCLick()
+switchUnit()
+
