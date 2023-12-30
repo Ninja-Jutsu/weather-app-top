@@ -11,7 +11,7 @@ export default function changeDaysStyleOnCLick(){
 }
 
 export async function changeOverlayIfDayOrNight(city){
-    const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=b9d5054bdd6e474c906163150232512&q=${city}&aqi=no`)
+    const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=b9d5054bdd6e474c906163150232512&q=${city}&aqi=no`)
     const data = await response.json()
 
     const isDay = data.location.localtime

@@ -27,7 +27,6 @@ body {
     display: grid;
     height: 100vh;
     grid-template-rows: 5% 95%;
-
 }
 
 form {
@@ -47,7 +46,7 @@ form {
     grid-auto-rows: max-content;
     justify-content: space-between;
     align-content: center;
-    gap: 5px;
+    /* gap: 5px; */
 }
 
 #left {
@@ -110,6 +109,11 @@ form {
     flex-direction: column;
     color: var(--secondTextDayColor);
     padding-left: 10px;
+}
+
+#mainDetails p{
+    display: flex;
+    gap: 3px;
 }
 
 #daysForecast {

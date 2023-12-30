@@ -2,7 +2,7 @@
 import changeDaysStyleOnCLick , {changeOverlayIfDayOrNight} from "./style.js"
 
 async function getWeatherForHeader(city) {
-    const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=b9d5054bdd6e474c906163150232512&q=${city}&aqi=no`)
+    const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=b9d5054bdd6e474c906163150232512&q=${city}&aqi=no`)
     const data = await response.json()
     const countryName = data.location.country
     const isDay = data.current.is_day
@@ -45,7 +45,7 @@ async function addToHeaderDomOnSearch(input) {
 }
 
 async function getFutureForecast(city){
-    const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=b9d5054bdd6e474c906163150232512&q=${city}&days=7&aqi=no&alerts=no`)
+    const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=b9d5054bdd6e474c906163150232512&q=${city}&days=7&aqi=no&alerts=no`)
     const data = await response.json()
     const forecastArray = data.forecast.forecastday
     return forecastArray
